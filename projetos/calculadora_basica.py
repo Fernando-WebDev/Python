@@ -1,5 +1,5 @@
 #calculadora dee operações basicas
-def main():
+def calcular():
 
     try:
         op = input("Informe a peração que deseja fazer (+, -, *, /): ")
@@ -11,12 +11,12 @@ def main():
         else:
             print("Operação invalida! Tente novamente.")
             print("...................................")
-            return main()
+            return calcular()
 
     except ValueError:
         print("Valores invalidos! Tente novamente.")
         print("...................................")
-        return main()
+        return calcular()
     
     else:
         if op == "+":
@@ -28,4 +28,4 @@ def main():
         else:
             print(f"A divisão {n1} / {n2} é: {(n1 / n2)}")
 
-main()
+calcular()
