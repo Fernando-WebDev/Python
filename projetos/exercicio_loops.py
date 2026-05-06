@@ -38,3 +38,21 @@ x = 2
 while x > -16:
     print(x)
     x -= 3
+print("...........")
+
+pares = -200
+while pares < -99:
+    print(pares)
+    pares += 2
+print("...........")
+
+mult_7 = -728
+while mult_7 < 1352:
+    print(mult_7)
+    mult_7 += 7
+print("...........")
+
+y = -308
+while y < 252:
+    y += 14
+    print(y)
