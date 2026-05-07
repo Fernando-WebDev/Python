@@ -56,3 +56,16 @@ y = -308
 while y < 252:
     y += 14
     print(y)
+print("...........")
+
+
+senha = input("digite sua senha: ")
+while not(senha.isnumeric()):
+    senha = input("digite sua senha: ")
+else:
+    print("Acesso liberado!")
+print("...........")
+
+idade = input("Digite sua idade: ")
+while idade.isnumeric() and idade > 102:
+    idade = input("Digite sua idade: ")
