@@ -66,6 +66,7 @@ else:
     print("Acesso liberado!")
 print("...........")
 
-idade = input("Digite sua idade: ")
+idade = ""
+ctg = 0
 while idade.isnumeric() and idade > 102:
     idade = input("Digite sua idade: ")
