@@ -14,8 +14,15 @@ while rep < quant:
 for i in l:
     ints = ''
     for x in i:
-        print(f'CARACTERS: ', x  , ', ASCII = ', ord(x))
-
+        asc = ord(x)
+        print(f'CARACTERS: ', x  , ', ASCII = ', asc)
+    
+        if asc < 100:
+            ints += '0'
+            ints += str(asc)
+        else:
+            ints += str(asc)
+    l1.append(ints)
 
 print(l)
 print(l1)
