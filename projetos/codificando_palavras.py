@@ -3,6 +3,7 @@ def codificador():
     try:
 
         l = []
+        l_letras_cod = []
         l_asc = []
         l_asc_codificado = []
         nomes = ''
@@ -24,6 +25,7 @@ def codificador():
         for itens in l:
             acomulado = ''
             acomulado_cod = ''
+            codificacao = ''
             for letras in itens:
 
                 asc = ord(letras)
@@ -39,13 +41,18 @@ def codificador():
                 if asc < 100:
                     acomulado_cod += '0'
                     acomulado_cod += str(asc)
+                    codificacao += chr(asc)
                 else:
                      acomulado_cod += str(asc)
+                     codificacao += chr(asc)
 
+            l_letras_cod.append(codificacao)
             l_asc.append(acomulado)
             l_asc_codificado.append(acomulado_cod)
-        print(l)
-        print(l_asc)
-        print(l_asc_codificado)
+        
+        print('Suas palavras: ', l)
+        print('Suas palavras codificadas: ', l_letras_cod)
+        print('ASCII: ', l_asc)
+        print('ASCII codificado: ', l_asc_codificado)
 
 codificador()
