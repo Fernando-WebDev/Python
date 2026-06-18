@@ -61,4 +61,15 @@ def codificador():
         print('ASCII: ', l_asc)
         print('ASCII codificado: ', l_asc_codificado)
 
+        #Adicionando a criptografia a um arquivo de texto
+        criptografia = open('/home/fer/Documentos/GitHub/Python/crip.txt', 'r+')
+        #Lendo o arquivo
+        for linha in criptografia:
+            print(linha)
+
+        #Adicionando nova linha ao arquivo
+        criptografia.write(f'criptografia:\n{l_letras_cod}\n{l_asc_codificado}\n')
+        #Fechando o arquivo
+        criptografia.close()
+
 codificador()
