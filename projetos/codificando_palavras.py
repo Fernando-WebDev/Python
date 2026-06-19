@@ -11,7 +11,7 @@ def codificador():
         key = int(input("Insira um chave de codificação: "))
 
     #Exvessão para valores errados
-    except  ValueError:
+    except  ValueErrolr:
         print("Insira a quantidade em números inteiros!\n................................................")
         return codificador()
  
@@ -62,13 +62,12 @@ def codificador():
         print('ASCII codificado: ', l_asc_codificado)
 
         #Adicionando a criptografia a um arquivo de texto
-        criptografia = open('/home/fer/Documentos/GitHub/Python/crip.txt', 'r+')
-        #Lendo o arquivo
-        for linha in criptografia:
-            print(linha)
-
-        #Adicionando nova linha ao arquivo
-        criptografia.write(f'criptografia:\n{l_letras_cod}\n{l_asc_codificado}\n')
+        criptografia = open('/home/fer/Documentos/GitHub/Python/crip.txt', 'w')
+        sentence = ''
+        for i in l_letras_cod:
+            sentence = i
+            #Adicionando nova linha ao arquivo
+            criptografia.write(sentence)
         #Fechando o arquivo
         criptografia.close()
 
