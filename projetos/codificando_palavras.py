@@ -11,7 +11,7 @@ def codificador():
         key = int(input("Insira um chave de codificação: "))
 
     #Exvessão para valores errados
-    except  ValueErrolr:
+    except  ValueError:
         print("Insira a quantidade em números inteiros!\n................................................")
         return codificador()
  
