@@ -38,12 +38,12 @@ def codificador_inverso():
 
         cod.append(palavar_cod)
 
-        crip_inversa = open('/home/fer/Documentos/GitHub/Python/crip_inversa.txt', 'w')
-        adicionada = ''
-        for item in cod:
-            adicionada = item
-            crip_inversa.write(adicionada)
+        # crip_inversa = open('/home/fer/Documentos/GitHub/Python/crip_inversa.txt', 'w')
+        # adicionada = ''
+        # for item in cod:
+        #     adicionada = item
+        #     crip_inversa.write(adicionada)
 
-        crip_inversa.close()
+        # crip_inversa.close()
 
 codificador_inverso()

@@ -7,23 +7,23 @@ def descodificador():
 
 
         #Adicionando a criptografia a um arquivo de texto
-        criptografia = open('/home/fer/Documentos/GitHub/Python/crip.txt', 'r')
-        #Lendo o arquivo
-        for linha in criptografia:
-            palavra_descod = ''
+        # criptografia = open('/home/fer/Documentos/GitHub/Python/crip.txt', 'r')
+        # #Lendo o arquivo
+        # for linha in criptografia:
+        #     palavra_descod = ''
 
-            #Descodificando letra por letra
-            for letras_cod in linha:
-                palavra_descod += chr(ord(letras_cod) - key)
+        #     #Descodificando letra por letra
+        #     for letras_cod in linha:
+        #         palavra_descod += chr(ord(letras_cod) - key)
 
-            #Adicionando a palavra descodificada a lista
-            palavras_descod.append(palavra_descod)
+        #     #Adicionando a palavra descodificada a lista
+        #     palavras_descod.append(palavra_descod)
         
-        #Mostrando os valores descodificados
-        print(f'Palavra descodificada: {palavras_descod}')
+        # #Mostrando os valores descodificados
+        # print(f'Palavra descodificada: {palavras_descod}')
 
-        #Fechando o arquivo
-        criptografia.close()
+        # #Fechando o arquivo
+        # criptografia.close()
     
     try:
 
