@@ -2,13 +2,13 @@ def codificador():
 
     try:
         #Coleta e definição de dados
-        l = []
-        l_letras_cod = []
-        l_asc = []
-        l_asc_codificado = []
+        letras = []
+        letras_cod = []
         nomes = ''
         quant = int(input('Quantos nomes pretende digiar? '))
         key = int(input("Insira um chave de codificação: "))
+        while key > 26:
+            key = key % 26
 
     #Exvessão para valores errados
     except  ValueError:
@@ -21,47 +21,41 @@ def codificador():
         rep = 0
         while rep < quant:
             nomes = input('Digite um nome: ')
-            l.append(nomes)
+            letras.append(nomes)
             rep += 1
 
         #Analisando palavra por palavra
-        for itens in l:
-            acomulado = ''
-            acomulado_cod = ''
-            codificacao = ''
-
+        for itens in letras:
             #Descodificando letra por letra
-            palavar_cod = ''
+            palavra_cod = ''
             for letra in itens:
                 nova_letra = ''
 
                 if 'A'<= letra <= 'Z':
-                    nova_letra = ord(letra) + key
+                    nova_letra = (ord(letra) + key) % 26
                     nova_letra = chr(90 - nova_letra)
 
                 elif 'a' <= letra <= 'z':
-                    nova_letra = ord(letra) - 97
+                    nova_letra = (ord(letra) + key) % 26
                     nova_letra = chr(122 - nova_letra)
 
                 else: 
                     nova_letra = letra
 
-            palavar_cod += nova_letra
+                palavra_cod += nova_letra
             #Adicionando as palavras codificadas a lista
-            l_letras_cod.append(codificacao)
-            l_asc.append(acomulado)
-            l_asc_codificado.append(acomulado_cod)
+                
+            letras_cod.append(palavra_cod)
+            
         
         #Mostrando os valores finais ao usuario
-        print('Suas palavras: ', l)
-        print('Suas palavras codificadas: ', l_letras_cod)
-        print('ASCII: ', l_asc)
-        print('ASCII codificado: ', l_asc_codificado)
+        print('Suas palavras: ', letras)
+        print('Suas palavras codificadas: ', letras_cod)
 
         #Adicionando a criptografia a um arquivo de texto
         # criptografia = open('/home/fer/Documentos/GitHub/Python/crip.txt', 'w')
         # sentence = ''
-        # for i in l_letras_cod:
+        # for i in letras_cod:
         #     sentence = i
         #     #Adicionando nova linha ao arquivo
         #     criptografia.write(sentence)
