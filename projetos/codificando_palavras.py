@@ -31,25 +31,22 @@ def codificador():
             codificacao = ''
 
             #Descodificando letra por letra
-            for letras in itens:
-                asc = ord(letras)
-                print(f'CARACTERS: ', letras  , ', ASCII = ', asc)
-                if asc < 100:
-                    acomulado += '0'
-                    acomulado += str(asc)
-                else:
-                    acomulado += str(asc)
+            palavar_cod = ''
+            for letra in itens:
+                nova_letra = ''
 
-                asc += key
-                print(f'NOVO_CARACTERS: ', chr(asc)  , ', ASCII = ', asc)
-                if asc < 100:
-                    acomulado_cod += '0'
-                    acomulado_cod += str(asc)
-                    codificacao += chr(asc)
-                else:
-                     acomulado_cod += str(asc)
-                     codificacao += chr(asc)
+                if 'A'<= letra <= 'Z':
+                    nova_letra = ord(letra) + key
+                    nova_letra = chr(90 - nova_letra)
 
+                elif 'a' <= letra <= 'z':
+                    nova_letra = ord(letra) - 97
+                    nova_letra = chr(122 - nova_letra)
+
+                else: 
+                    nova_letra = letra
+
+            palavar_cod += nova_letra
             #Adicionando as palavras codificadas a lista
             l_letras_cod.append(codificacao)
             l_asc.append(acomulado)
