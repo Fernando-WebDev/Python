@@ -1,4 +1,4 @@
-def codificador():
+def cifragem_ASCII():
 
     try:
         #Coleta e definição de dados
@@ -13,7 +13,7 @@ def codificador():
     #Exvessão para valores errados
     except  ValueError:
         print("Insira a quantidade em números inteiros!\n................................................")
-        return codificador()
+        return cifragem_ASCII()
  
     else:
 
@@ -53,13 +53,13 @@ def codificador():
         print('Suas palavras codificadas: ', letras_cod)
 
         #Adicionando a criptografia a um arquivo de texto
-        # criptografia = open('/home/fer/Documentos/GitHub/Python/crip.txt', 'w')
-        # sentence = ''
-        # for i in letras_cod:
-        #     sentence = i
-        #     #Adicionando nova linha ao arquivo
-        #     criptografia.write(sentence)
-        # #Fechando o arquivo
-        # criptografia.close()
+        criptografia = open('/home/fer/Documentos/GitHub/Python/crip.txt', 'w')
+        sentence = ''
+        for i in letras_cod:
+            sentence = i
+            #Adicionando nova linha ao arquivo
+            criptografia.write(sentence)
+        #Fechando o arquivo
+        criptografia.close()
 
-codificador()
+cifragem_ASCII()

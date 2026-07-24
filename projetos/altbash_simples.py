@@ -1,4 +1,4 @@
-def codificador_inverso():
+def altbash_simples():
 
     try:
         para_descod = []
@@ -8,8 +8,8 @@ def codificador_inverso():
 
     except ValueError:
 
-        print('Informe um valor valido!.........................')
-        return codificador_inverso()
+        print('Informe um valor númerico!.........................')
+        return altbash_simples()
     else:
 
         x = 0
@@ -38,12 +38,12 @@ def codificador_inverso():
 
         cod.append(palavar_cod)
 
-        # crip_inversa = open('/home/fer/Documentos/GitHub/Python/crip_inversa.txt', 'w')
-        # adicionada = ''
-        # for item in cod:
-        #     adicionada = item
-        #     crip_inversa.write(adicionada)
+        crip_inversa = open('/home/fer/Documentos/GitHub/Python/crip_altbash.txt', 'w')
+        adicionada = ''
+        for item in cod:
+            adicionada = item
+            crip_inversa.write(adicionada)
 
-        # crip_inversa.close()
+        crip_inversa.close()
 
-codificador_inverso()
+altbash_simples()
