@@ -38,7 +38,7 @@ def altbash_simples():
 
         cod.append(palavar_cod)
 
-        crip_inversa = open('/home/fer/Documentos/GitHub/Python/crip_altbash.txt', 'w')
+        crip_inversa = open('/home/fer/Documentos/GitHub/Python/projetos/case_sensitive/crip_altbash.txt', 'w')
         adicionada = ''
         for item in cod:
             adicionada = item

@@ -53,7 +53,7 @@ def cifragem_ASCII():
         print('Suas palavras codificadas: ', letras_cod)
 
         #Adicionando a criptografia a um arquivo de texto
-        criptografia = open('/home/fer/Documentos/GitHub/Python/crip.txt', 'w')
+        criptografia = open('/home/fer/Documentos/GitHub/Python/projetos/case_sensitive/crip.txt', 'w')
         sentence = ''
         for i in letras_cod:
             sentence = i
