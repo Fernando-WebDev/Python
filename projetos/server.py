@@ -2,8 +2,8 @@ import socket
 
 # Define o endereço como a própria máquina ()
 # e a portas como: 3210 - Servidor / 3211 - Cliente
-TCP_IP = '127.0.1.1'
-TCP_PORT = 3216
+TCP_IP = '0.0.0.0'
+TCP_PORT = 7854
 
 # Cria o socket padrão: IPv4 - UDP
 # socket.AF_INET -> ipv4 - Internet Protocol version 4
@@ -28,10 +28,16 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
     with conn:
 
         print(f'Servidor conectado por>: {addr}')
-
+        soma = 0
+        quant = 0
         while True:
+
+            
             # recebe até 1024 bytes
             data = conn.recv(1024)
+
+            if not data:
+                break
 
             # decodifica a mensagem retornando apenas a string referente à mensagem
             mensagem = data.decode()
@@ -41,16 +47,16 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
 
             print(f'Mensagem: {mensagem} \n  - recebida do IP {addr[0]} : Porta {addr[1]}\n')
 
-            # Inverte a string da mensagem
-            mensagem = mensagem[::-1]
+            if mensagem.isnumeric():
+                soma += int(mensagem)
+                quant += 1
+            if quant > 1:
+                soma = str(soma)
+                conn.sendall(soma.encode())
+                print(f'A soma dos valores são: {soma} \n  - recebida do IP {addr[0]} : Porta {addr[1]}\n')
+                quant = 0
+                soma = 0
 
-            # Codifica a string para enviar ao cliente
-            mensagem = mensagem.encode()
-
-            # Retorna a mensagem ao cliente
-            conn.sendall(mensagem)
-
-            print(f'Mensagem: {mensagem.decode()} \n  - enviada para IP {addr[0]} : Porta {addr[1]}\n')
-
+            
 
 print('\nServidor Finalizado.\n')
