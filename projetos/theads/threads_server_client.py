@@ -3,8 +3,8 @@ import threading
 
 
 TCP_IP = '0.0.0.0'
-CLIENT_IP = '127.0.0.1'
-TCP_PORT = 3232
+CLIENT_IP = '192.168.4.165'
+TCP_PORT = 3111
 
 
 def server():
