@@ -2,10 +2,8 @@ import socket
 import threading
 import sys
 
-# Função executada em uma thread separada para lidar com um cliente conectado ao nosso servidor local
 def handle_incoming_client(client_socket, address):
     print(f"\n[+] Novo cliente conectado a você vindo de {address}")
-    print("Digite algo a qualquer momento ou pressione Enter para voltar ao menu...")
     try:
         while True:
             data = client_socket.recv(1024)
@@ -19,12 +17,12 @@ def handle_incoming_client(client_socket, address):
         client_socket.close()
         print(f"\n[-] Conexão com {address} foi encerrada.")
 
-# Função que inicia o socket do servidor em background (escutando conexões)
 def start_server(port):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     try:
-        server.bind(('127.0.0.1', port))
+        # IMPORTANTE: '0.0.0.0' escuta em todas as placas de rede da máquina (aceita conexões externas)
+        server.bind(('0.0.0.0', port))
         server.listen(5)
     except Exception as e:
         print(f"[Erro no Servidor] Não foi possível iniciar na porta {port}: {e}")
@@ -33,14 +31,12 @@ def start_server(port):
     while True:
         try:
             client_socket, address = server.accept()
-            # Cada cliente que chega ganha uma thread dedicada
             thread = threading.Thread(target=handle_incoming_client, args=(client_socket, address))
             thread.daemon = True
             thread.start()
         except:
             break
 
-# Função executada em thread para escutar respostas de um servidor ao qual nos conectamos
 def listen_to_remote_server(sock, remote_address):
     try:
         while True:
@@ -55,26 +51,24 @@ def listen_to_remote_server(sock, remote_address):
 def main():
     print("=== NÓ DE REDE MULTI-THREADING (Servidor & Cliente) ===")
     
-    # Configura a porta onde ESTA instância vai escutar conexões
     try:
         my_port = int(input("Informe a porta onde este nó deve escutar (ex: 5000): "))
     except ValueError:
         print("Porta inválida.")
         return
 
-    # Inicia o servidor local em uma thread em background
+    # Inicia o servidor local em background
     server_thread = threading.Thread(target=start_server, args=(my_port,))
     server_thread.daemon = True
     server_thread.start()
-    print(f"[*] Servidor interno rodando na porta {my_port}. Pronto para aceitar conexões!")
+    print(f"[*] Servidor rodando na porta {my_port} (aceitando conexões locais e da rede).")
 
-    # Dicionário para armazenar as conexões ativas de cliente: {id_conexao: socket}
     active_connections = {}
     conn_counter = 1
 
     while True:
         print("\n--- MENU ---")
-        print("1. Conectar a um novo servidor")
+        print("1. Conectar a um novo servidor (outra máquina ou local)")
         print("2. Enviar mensagem para um servidor conectado")
         print("3. Listar conexões ativas")
         print("4. Sair / Encerrar programa")
@@ -82,26 +76,24 @@ def main():
         opcao = input("Escolha uma opção: ").strip()
 
         if opcao == "1":
+            target_ip = input("Informe o IP do servidor de destino (ex: 192.168.1.50 ou 127.0.0.1): ").strip()
             try:
-                target_port = int(input("Informe a porta do servidor de destino (localhost): "))
+                target_port = int(input("Informe a porta do servidor de destino: "))
                 
-                # Cria um socket de cliente e conecta
                 client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                client_sock.connect(('127.0.0.1', target_port))
+                client_sock.connect((target_ip, target_port))
                 
-                # Guarda no dicionário de conexões ativas
                 conn_id = conn_counter
                 active_connections[conn_id] = client_sock
                 conn_counter += 1
 
-                # Dispara uma thread para escutar as respostas desse servidor específico
-                t = threading.Thread(target=listen_to_remote_server, args=(client_sock, ('127.0.0.1', target_port)))
+                t = threading.Thread(target=listen_to_remote_server, args=(client_sock, (target_ip, target_port)))
                 t.daemon = True
                 t.start()
 
-                print(f"[+] Conectado com sucesso ao servidor na porta {target_port}! (ID da Conexão: {conn_id})")
+                print(f"[+] Conectado com sucesso a {target_ip}:{target_port}! (ID da Conexão: {conn_id})")
             except Exception as e:
-                print(f"[-] Erro ao conectar: {e}")
+                print(f"[-] Erro ao conectar (Connection Refused provável): {e}")
 
         elif opcao == "2":
             if not active_connections:
